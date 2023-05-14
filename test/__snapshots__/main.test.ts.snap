@@ -1,0 +1,659 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+{
+  "Outputs": {
+    "testapirestapiEndpoint19AE161D": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "testapirestapi8FE3BDC1",
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "testapirestapiDeploymentStageprod3774B1FD",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "testapispecrestapiEndpoint582FC54A": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "testapispecrestapi8BA392C8",
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "testapispecrestapiDeploymentStageprod74E024CC",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "athenaworkgroup81D40E4F": {
+      "Properties": {
+        "Name": "athena-workgroup",
+        "WorkGroupConfiguration": {
+          "EnforceWorkGroupConfiguration": true,
+          "ResultConfiguration": {
+            "EncryptionConfiguration": {
+              "EncryptionOption": "SSE_KMS",
+            },
+          },
+        },
+      },
+      "Type": "AWS::Athena::WorkGroup",
+    },
+    "testapirestapi8FE3BDC1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Name": "rest-api",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "testapirestapiAccount520B7319": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "testapirestapi8FE3BDC1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "testapirestapiCloudWatchRole2AE5944F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "testapirestapiCloudWatchRole2AE5944F": {
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "testapirestapiDeployment2B8F7D926626cd6fa3b0b33292ab0d767c9a62c1": {
+      "DependsOn": [
+        "testapirestapiGET795111A4",
+        "testapirestapivalidator739FBF08",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "testapirestapi8FE3BDC1",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "testapirestapiDeploymentStageprod3774B1FD": {
+      "DependsOn": [
+        "testapirestapiAccount520B7319",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DeploymentId": {
+          "Ref": "testapirestapiDeployment2B8F7D926626cd6fa3b0b33292ab0d767c9a62c1",
+        },
+        "RestApiId": {
+          "Ref": "testapirestapi8FE3BDC1",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "testapirestapiGET795111A4": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+            },
+          ],
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{ "statusCode": 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "RequestValidatorId": {
+          "Ref": "testapirestapivalidator739FBF08",
+        },
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "testapirestapi8FE3BDC1",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": {
+          "Ref": "testapirestapi8FE3BDC1",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "testapirestapivalidator739FBF08": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "RestApiId": {
+          "Ref": "testapirestapi8FE3BDC1",
+        },
+        "ValidateRequestBody": true,
+        "ValidateRequestParameters": true,
+      },
+      "Type": "AWS::ApiGateway::RequestValidator",
+    },
+    "testapispecrestapi8BA392C8": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "BodyS3Location": {
+          "Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "Key": "f38f20ae66436085bf646a5684a01077771107e8fe1bdac83a2c985ef54a698b.yaml",
+        },
+        "Name": "spec-rest-api",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "testapispecrestapiAccount3FD5EBA1": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "testapispecrestapi8BA392C8",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "testapispecrestapiCloudWatchRole61A34A19",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "testapispecrestapiCloudWatchRole61A34A19": {
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "testapispecrestapiDeployment8D6A76E2949ba810384fe46f45dfb3c2e3e93c66": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "testapispecrestapi8BA392C8",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "testapispecrestapiDeploymentStageprod74E024CC": {
+      "DependsOn": [
+        "testapispecrestapiAccount3FD5EBA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG3",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "irelevant at the moment",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "irelevant at the moment",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DeploymentId": {
+          "Ref": "testapispecrestapiDeployment8D6A76E2949ba810384fe46f45dfb3c2e3e93c66",
+        },
+        "RestApiId": {
+          "Ref": "testapispecrestapi8BA392C8",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
