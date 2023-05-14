@@ -1,1 +1,1 @@
-# test-cdk-nag-athena
+# test-cdk-nag
