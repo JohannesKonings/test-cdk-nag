@@ -43,7 +43,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.79.1",
+    "aws-cdk-lib": "^2.80.0",
     "cdk-nag": "^2.27.7",
     "constructs": "^10.0.5"
   },
